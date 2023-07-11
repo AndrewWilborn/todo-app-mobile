@@ -18,15 +18,30 @@ export default function TodoList({user}) {
   const handleItemUpdate = (id, done) => {
     const itemUpdate = {id, done: !done}
 
-    console.log(itemUpdate)
-
     fetch("https://todo-c11.web.app/tasks/", {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
         "Content-type": "application/json"
       },
       body: JSON.stringify(itemUpdate)
     })
+    .then(() => {
+      fetch(`https://todo-c11.web.app/tasks/${user.uid}`)
+        .then(res => res.json())
+        .then(setTodoItems)
+    }).catch(alert)
+  }
+
+  const handleItemDelete = (id) => {
+    const itemDelete = { id }
+
+    fetch("https://todo-c11.web.app/tasks/", {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(itemDelete)
+    })    
     .then(() => {
       fetch(`https://todo-c11.web.app/tasks/${user.uid}`)
         .then(res => res.json())
@@ -48,7 +63,6 @@ export default function TodoList({user}) {
               <HStack key={item.id} w="100%" justifyContent="space-between" alignItems="center">
                 <Checkbox
                   aria-label={item.title}
-                  //defaultValue={item.done}
                   isChecked={item.done}
                   onChange={() => handleItemUpdate(thisItemId, thisItemDone)}/>
                 <Text 
@@ -57,8 +71,16 @@ export default function TodoList({user}) {
                 mx={2}
                 strikeThrough={item.done}
                 color={item.done ? "coolGray.500" : "coolGray.100"}
-                textAlign="left" width="100%">
+                textAlign="left" width="50%">
                   {item.title}
+                </Text>
+                <Text
+                  fontSize={18}
+                  mx={2}
+                  textAlign="right"
+                  color="coolGray.400"
+                  onPress={() => handleItemDelete(thisItemId)}>
+                  Delete
                 </Text>
               </HStack>
             )})
