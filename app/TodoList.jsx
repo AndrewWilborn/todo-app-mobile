@@ -47,15 +47,16 @@ export default function TodoList({user}) {
               return(
               <HStack key={item.id} w="100%" justifyContent="space-between" alignItems="center">
                 <Checkbox
-                  aria-label={item.title} 
+                  aria-label={item.title}
                   //defaultValue={item.done}
                   isChecked={item.done}
                   onChange={() => handleItemUpdate(thisItemId, thisItemDone)}/>
                 <Text 
-                fontSize={18} 
-                mx={2} 
-                strikeThrough={item.done} 
-                color={item.done ? "coolGray.500" : "coolGray.100"} 
+                fontSize={18}
+                onPress={() => handleItemUpdate(thisItemId, thisItemDone)}
+                mx={2}
+                strikeThrough={item.done}
+                color={item.done ? "coolGray.500" : "coolGray.100"}
                 textAlign="left" width="100%">
                   {item.title}
                 </Text>
