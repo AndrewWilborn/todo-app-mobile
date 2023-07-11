@@ -23,7 +23,7 @@ export default function Login({setUser}) {
         <Heading mt={1} color="coolGray.400" fontWeight="medium" size="xs">
           Sign in to continue...
         </Heading>
-        <KeyboardAvoidingView h={{ base: "400px", lg: "auto"}} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+        
           <VStack space={3} mt={5}>
             <FormControl isRequired>
               <FormControl.Label color="coolGray.300">
@@ -41,7 +41,6 @@ export default function Login({setUser}) {
               Sign In
             </Button>
           </VStack>
-        </KeyboardAvoidingView>
       </Box>
     </Center>
   );
