@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react';
-import { Box, Center, Checkbox, HStack, Text, VStack } from "native-base";
+import { Box, Center, Checkbox, HStack, Text, VStack, Button } from "native-base";
 import TodoHeader from './TodoHeader';
 
 export default function TodoList({user}) {
@@ -74,14 +74,13 @@ export default function TodoList({user}) {
                 textAlign="left" width="50%">
                   {item.title}
                 </Text>
-                <Text
-                  fontSize={18}
-                  mx={2}
-                  textAlign="right"
-                  color="coolGray.400"
+                <Button
+                  variant="ghost"
+                  colorScheme="secondary"
+                  size="sm"
                   onPress={() => handleItemDelete(thisItemId)}>
-                  Delete
-                </Text>
+                  🗑️
+                </Button>
               </HStack>
             )})
           }
