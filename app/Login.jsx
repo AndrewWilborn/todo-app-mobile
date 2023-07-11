@@ -10,7 +10,7 @@ export default function Login({setUser}) {
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then(response => setUser(response))
+      .then(response => setUser(response.user))
       .catch(err => alert(err.message))
   }
 
